@@ -24,7 +24,6 @@ def get_url(request):
             for row in heading:
                 print(row.text)
                 team = Team.objects.create(name=row.text)
-                Team.save()
                 print(":->")
                 URLsq = 'https://www.espncricinfo.com' + row['href']
                 innerpage = requests.get(URLsq)
@@ -34,7 +33,6 @@ def get_url(request):
                     nm = rw.get_text()
                     print(nm)
                     TeamMember.objects.create(team_name=team, name=nm)
-                    TeamMember.save()
                 print("-------------------")
             # return HttpResponseRedirect('/thanks/')
             return HttpResponse("Okay")
